@@ -40,23 +40,20 @@ public class GameOfLife {
 
         // kopioidaan arvot
         for (int i = 0; i < taulukko.length; i++) {
-            for (int j = 0; j < taulukko[j].length; j++) {
+            for (int j = 0; j < taulukko[i].length; j++) {
                 kopio[i][j] = taulukko[i][j];
             }
         }
 
         // sääntöjen tarkistus
         for (int i = 0; i < taulukko.length; i++) {
-            for (int j = 0; j < taulukko[j].length; j++) {
+            for (int j = 0; j < taulukko[i].length; j++) {
 
-                if (elossaOleviaNaapureita(taulukko, i, j) < 2)
+                if (elossaOleviaNaapureita(taulukko, i, j) < 2 || elossaOleviaNaapureita(taulukko, i, j) > 4)
                     kopio[i][j] = 0;
 
                 else if (elossaOleviaNaapureita(taulukko, i, j) == 2 || elossaOleviaNaapureita(taulukko, i, j) == 3)
                     continue;
-
-                else if (elossaOleviaNaapureita(taulukko, i, j) > 4)
-                    kopio[i][j] = 0;
 
                 else if (taulukko[i][j] == 0 && elossaOleviaNaapureita(taulukko, i, j) == 3)
                     kopio[i][j] = 1;
