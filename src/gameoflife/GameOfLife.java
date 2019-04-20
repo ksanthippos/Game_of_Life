@@ -51,14 +51,37 @@ public class GameOfLife {
     public int elossaOleviaNaapureita(int[][] taulukko, int x, int y) {
 
         int maara = 0;
+        int X = x + 1;
+        int Y = y + 1;
 
-        for (int i = x - 1; i < x + 1; i++) {
-            for (int j = y - 1; j < y + 1; j++) {
-                if (taulukko[i][j] == 1)
-                    maara++;
+        /*
+        luodaan uusi taulukko annetun ympärille, jolloin voidaan tarkistaa pienen taulukon ympärillä olevat
+        ruudut helposti ilman rajojen ylittämistä
+        */
+
+        int taulukkoReunoilla[][] = new int[5][5];
+
+        for (int i = 0; i < taulukkoReunoilla.length; i++) {
+            for (int j = 0; j < taulukkoReunoilla[i].length; j++) {
+                taulukkoReunoilla[i][j] = 0;
             }
         }
 
+        for (int i = 0; i < taulukko.length; i++) {
+            for (int j = 0; j < taulukko[i].length; j++) {
+                taulukkoReunoilla[i + 1][j + 1] = taulukko[i][j];
+            }
+        }
+
+
+        for (int i = X - 1; i < X + 2; i++) {
+            for (int j = Y - 1; j < Y + 2; j++) {
+                if (i == X && j == Y)
+                    continue;
+                else if (taulukkoReunoilla[i][j] == 1)
+                    maara++;
+            }
+        }
 
         return maara;
     }
