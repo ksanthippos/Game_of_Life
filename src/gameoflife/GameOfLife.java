@@ -38,6 +38,35 @@ public class GameOfLife {
         // taulukossa arvo 1 kuvaa elävää alkiota, arvo 0 kuollutta alkiota
         int[][] kopio = new int[this.taulukko.length][this.taulukko[0].length];
 
+        // kopioidaan arvot
+        for (int i = 0; i < taulukko.length; i++) {
+            for (int j = 0; j < taulukko[j].length; j++) {
+                kopio[i][j] = taulukko[i][j];
+            }
+        }
+
+        // sääntöjen tarkistus
+        for (int i = 0; i < taulukko.length; i++) {
+            for (int j = 0; j < taulukko[j].length; j++) {
+
+                if (elossaOleviaNaapureita(taulukko, i, j) < 2)
+                    kopio[i][j] = 0;
+
+                else if (elossaOleviaNaapureita(taulukko, i, j) == 2 || elossaOleviaNaapureita(taulukko, i, j) == 3)
+                    continue;
+
+                else if (elossaOleviaNaapureita(taulukko, i, j) > 4)
+                    kopio[i][j] = 0;
+
+                else if (taulukko[i][j] == 0 && elossaOleviaNaapureita(taulukko, i, j) == 3)
+                    kopio[i][j] = 1;
+
+            }
+        }
+
+        // arvojen päivitys
+        taulukko = kopio;
+
     }
 
     public int[][] getTaulukko() {
@@ -53,6 +82,7 @@ public class GameOfLife {
         int maara = 0;
         int X = x + 1;
         int Y = y + 1;
+
 
         /*
         luodaan uusi taulukko annetun ympärille, jolloin voidaan tarkistaa pienen taulukon ympärillä olevat
