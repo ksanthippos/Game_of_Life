@@ -59,7 +59,7 @@ public class GameOfLife {
         ruudut helposti ilman rajojen ylittämistä
         */
 
-        int taulukkoReunoilla[][] = new int[5][5];
+        int taulukkoReunoilla[][] = new int[taulukko.length + 2][taulukko.length + 2];
 
         for (int i = 0; i < taulukkoReunoilla.length; i++) {
             for (int j = 0; j < taulukkoReunoilla[i].length; j++) {
