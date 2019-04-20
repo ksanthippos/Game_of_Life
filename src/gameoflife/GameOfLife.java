@@ -49,10 +49,10 @@ public class GameOfLife {
         for (int i = 0; i < taulukko.length; i++) {
             for (int j = 0; j < taulukko[i].length; j++) {
 
-                if (elossaOleviaNaapureita(taulukko, i, j) < 2 || elossaOleviaNaapureita(taulukko, i, j) > 4)
+                if (taulukko[i][j] == 1 && (elossaOleviaNaapureita(taulukko, i, j) < 2 || elossaOleviaNaapureita(taulukko, i, j) >= 4))
                     kopio[i][j] = 0;
 
-                else if (elossaOleviaNaapureita(taulukko, i, j) == 2 || elossaOleviaNaapureita(taulukko, i, j) == 3)
+                else if (taulukko[i][j] == 1 && (elossaOleviaNaapureita(taulukko, i, j) == 2 || elossaOleviaNaapureita(taulukko, i, j) == 3))
                     continue;
 
                 else if (taulukko[i][j] == 0 && elossaOleviaNaapureita(taulukko, i, j) == 3)
