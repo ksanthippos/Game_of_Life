@@ -12,8 +12,8 @@ import javafx.stage.Stage;
 public class GameOfLifeSovellus extends Application {
 
     public void start(Stage stage) {
-        final int leveys = 800;
-        final int korkeus = 800;
+        final int leveys = 200;
+        final int korkeus = 200;
 
         stage.setTitle("Game of Life");
 
@@ -26,12 +26,12 @@ public class GameOfLifeSovellus extends Application {
 
         GraphicsContext piirturi = piirtoalusta.getGraphicsContext2D();
 
-        GameOfLife gol = new GameOfLife(200, 200);
+        GameOfLife gol = new GameOfLife(50, 50);
         gol.alustaSatunnaisesti();
 
         new AnimationTimer() {
             // päivitetään animaatiota noin 100 millisekunnin välein
-            private long sleepNanoseconds = 100 * 1000000;
+            private long sleepNanoseconds = 1000 * 1000000;
             private long prevTime = 0;
 
             public void handle(long currentNanoTime) {
