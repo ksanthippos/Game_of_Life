@@ -76,24 +76,49 @@ public class GameOfLife {
 
     public int elossaOleviaNaapureita(int[][] taulukko, int x, int y) {
 
+
+        int maara = 0;
+
+        for (int i = x - 1; i < x + 2; i++) {
+            for (int j = y - 1; j < y + 2; j++) {
+                try {
+                    if (i == x && j == y)
+                        continue;
+
+                    else if (taulukko[i][j] == 1)
+                        maara++;
+                }
+                catch (ArrayIndexOutOfBoundsException e) {  // estetään taulukon ulkopuolelle meno poikkeuskäsittelyllä
+                    continue;
+                }
+
+            }
+        }
+
+        return maara;
+
+  /*
+        // Alkuperäinen, mutta hieman tehottomampi tapa. Toisaalta ilman poikkeuskäsittelyä..
+
         int maara = 0;
         int X = x + 1;
         int Y = y + 1;
 
 
-        /*
+        *//*
         luodaan uusi taulukko annetun ympärille, jolloin voidaan tarkistaa pienen taulukon ympärillä olevat
         ruudut helposti ilman rajojen ylittämistä
-        */
+        *//*
 
         int taulukkoReunoilla[][] = new int[taulukko.length + 2][taulukko.length + 2];
 
+        // täytetään isompi taulukko ensin nollilla
         for (int i = 0; i < taulukkoReunoilla.length; i++) {
             for (int j = 0; j < taulukkoReunoilla[i].length; j++) {
                 taulukkoReunoilla[i][j] = 0;
             }
         }
-
+        // pienemmän arvot isomman sisään, reunoille jää nollia
         for (int i = 0; i < taulukko.length; i++) {
             for (int j = 0; j < taulukko[i].length; j++) {
                 taulukkoReunoilla[i + 1][j + 1] = taulukko[i][j];
@@ -110,6 +135,6 @@ public class GameOfLife {
             }
         }
 
-        return maara;
+        return maara;*/
     }
 }
